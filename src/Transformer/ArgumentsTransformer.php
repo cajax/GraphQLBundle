@@ -1,4 +1,4 @@
-<?php
+`<?php
 
 declare(strict_types=1);
 
@@ -85,6 +85,11 @@ class ArgumentsTransformer
 
         if ($type instanceof NonNull) {
             $type = $type->getWrappedType();
+        }
+
+        if ($type instanceof ListOfType) {
+            $type = $type->getWrappedType();
+            $multiple = true;
         }
 
         if ($multiple) {
